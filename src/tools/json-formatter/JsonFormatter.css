@@ -1,0 +1,230 @@
+.json-tool {
+  max-width: 1280px;
+}
+
+.json-tool__intro h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem);
+  letter-spacing: -0.04em;
+  font-weight: 650;
+  line-height: 1.15;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0 0 22px;
+  color: var(--muted);
+  max-width: 40rem;
+  font-size: 1.02rem;
+}
+
+.status {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--idle-bg);
+  margin-bottom: 16px;
+}
+
+.status__badge {
+  flex: 0 0 auto;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.status__message {
+  margin: 2px 0 0;
+  font-size: 0.95rem;
+}
+
+.status--success {
+  background: var(--success-bg);
+  border-color: color-mix(in srgb, var(--success) 42%, var(--line));
+}
+
+.status--success .status__badge {
+  color: var(--accent-ink);
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.status--success .status__message {
+  color: var(--success);
+}
+
+.status--error {
+  background: var(--danger-bg);
+  border-color: color-mix(in srgb, var(--danger) 48%, var(--line));
+}
+
+.status--error .status__badge {
+  color: #1a0c0c;
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.status--error .status__message {
+  color: var(--danger);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-radius: 9px;
+  padding: 9px 14px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: #1d2028;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  font-weight: 650;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: #e3ff6a;
+  border-color: #e3ff6a;
+}
+
+.btn--ghost {
+  background: transparent;
+  margin-left: auto;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg-elevated);
+}
+
+.btn:focus-visible {
+  box-shadow: var(--focus);
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: min(72vh, 680px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.panel__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #14161c;
+}
+
+.panel__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 650;
+}
+
+.panel__meta {
+  color: var(--muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+}
+
+.panel__editor {
+  flex: 1;
+  width: 100%;
+  min-height: 420px;
+  resize: vertical;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text);
+  padding: 16px 16px 20px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  tab-size: 2;
+  overflow: auto;
+}
+
+.panel__editor:focus,
+.panel__editor:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.panel:focus-within {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+
+.panel__editor--output {
+  background: var(--bg-output);
+  color: #d7d4c8;
+}
+
+@media (max-width: 800px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    min-height: 0;
+  }
+
+  .panel__editor {
+    min-height: 280px;
+  }
+
+  .btn--ghost {
+    margin-left: 0;
+  }
+}
