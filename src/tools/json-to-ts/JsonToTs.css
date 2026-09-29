@@ -1,0 +1,5 @@
+/*
+ * The JSON → TypeScript tool reuses the shared .json-tool classes from
+ * JsonFormatter.css (header, status banner, toolbar, panels). Only
+ * tool-specific tweaks live here.
+ */

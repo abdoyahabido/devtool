@@ -1,0 +1,165 @@
+/*
+ * JWT Decoder specifics. The tool reuses the shared .json-tool classes from
+ * JsonFormatter.css (header, status banner, toolbar, panels, buttons).
+ */
+
+/* ---------- Token input ---------- */
+
+/* Compact panel: override the shared tall-editor panel defaults. */
+.jwt-input {
+  min-height: 0;
+}
+
+.jwt-input__editor {
+  min-height: 112px;
+  resize: vertical;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Security warning ---------- */
+
+.warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px 12px 14px;
+  border: 1px solid var(--warning-line);
+  border-radius: var(--radius-sm);
+  background: var(--warning-bg);
+  color: var(--warning);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.warning .icon {
+  flex: 0 0 auto;
+  font-size: 1.1rem;
+  margin-top: 1px;
+}
+
+.warning p {
+  margin: 0;
+}
+
+/* ---------- Results layout ---------- */
+
+.jwt-results {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.jwt-results__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Header/Payload/Signature panels shrink to fit their JSON. */
+.jwt-results .panel,
+section.panel:has(> .panel__code) {
+  min-height: 0;
+}
+
+.jwt-results .panel {
+  min-height: 0;
+}
+
+.panel__code {
+  margin: 0;
+  padding: 14px 18px;
+  background: var(--bg-output);
+  color: #d9d6ca;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.7;
+  overflow: auto;
+  max-height: 340px;
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.panel__code--sig {
+  max-height: 140px;
+  color: var(--text-soft);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Claims cards ---------- */
+
+.claims {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+  padding: 14px 16px 16px;
+}
+
+.claims__card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  padding: 11px 14px;
+  min-width: 0;
+}
+
+.claims__card-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.claims__card-value {
+  margin: 5px 0 0;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  overflow-wrap: anywhere;
+}
+
+.claims__card-extra {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* Tones */
+
+.claims__card--good {
+  border-color: var(--success-line);
+  background: var(--success-bg);
+}
+
+.claims__card--good .claims__card-value {
+  color: var(--success);
+}
+
+.claims__card--bad {
+  border-color: var(--danger-line);
+  background: var(--danger-bg);
+}
+
+.claims__card--bad .claims__card-value {
+  color: var(--danger);
+}
+
+.claims__card--warn {
+  border-color: var(--warning-line);
+  background: var(--warning-bg);
+}
+
+.claims__card--warn .claims__card-value {
+  color: var(--warning);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .jwt-results__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -148,6 +148,77 @@ export function IconArrowBraces() {
   );
 }
 
+/** Code brackets — generate action. */
+export function IconCode() {
+  return (
+    <I>
+      <path d="M7 6 3 10l4 4M13 6l4 4-4 4" />
+    </I>
+  );
+}
+
+/** Home — landing page nav. */
+export function IconHome() {
+  return (
+    <I>
+      <path d="M3.5 9.2 10 3.5l6.5 5.7M5 8v8h10V8" />
+      <path d="M8.2 16v-4.4h3.6V16" />
+    </I>
+  );
+}
+
+/** Rounded TS square — JSON → TypeScript tool. */
+export function IconTypeScript() {
+  return (
+    <I>
+      <rect x="2.5" y="2.5" width="15" height="15" rx="3" />
+      <text
+        x="10"
+        y="13.4"
+        textAnchor="middle"
+        fontSize="7.5"
+        fontWeight="700"
+        fill="currentColor"
+        stroke="none"
+        fontFamily="inherit"
+      >
+        TS
+      </text>
+    </I>
+  );
+}
+
+/** Key — JWT Decoder & Inspector tool. */
+export function IconKey() {
+  return (
+    <I>
+      <circle cx="7" cy="13" r="3.4" />
+      <path d="M9.5 10.5 16 4M13.5 6.5l2.2 2.2M11.5 8.5l2.2 2.2" />
+    </I>
+  );
+}
+
+/** Triangle alert — security warnings. */
+export function IconAlert() {
+  return (
+    <I>
+      <path d="M10 3.2 2.8 16.2a.9.9 0 0 0 .8 1.4h12.8a.9.9 0 0 0 .8-1.4L10 3.2Z" />
+      <path d="M10 8v4" />
+      <circle cx="10" cy="14.6" r="0.9" fill="currentColor" stroke="none" />
+    </I>
+  );
+}
+
+/** Clock — time-based claims. */
+export function IconClock() {
+  return (
+    <I>
+      <circle cx="10" cy="10" r="7.2" />
+      <path d="M10 5.8V10l3 2" />
+    </I>
+  );
+}
+
 /** Pencil-in-square — input/edit panel. */
 export function IconEdit() {
   return (

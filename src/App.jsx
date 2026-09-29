@@ -1,47 +1,45 @@
-import { useState } from "react";
-import { getToolById, tools } from "./tools/registry.js";
-import { IconLock, IconWrench } from "./tools/icons.jsx";
+import { getToolByPath, tools } from "./tools/registry.js";
+import Home from "./Home.jsx";
+import { IconHome, IconLock, IconWrench } from "./tools/icons.jsx";
+import { Link, usePageMeta, useRoute } from "./router.jsx";
 import "./App.css";
 
 export default function App() {
-  const [activeToolId, setActiveToolId] = useState(tools[0].id);
-  const activeTool = getToolById(activeToolId);
-  const ActiveComponent = activeTool.component;
+  const path = useRoute();
+  const activeTool = getToolByPath(path);
 
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div className="brand">
+        <Link to="/" className="brand" aria-label="Devtool home">
           <span className="brand__mark">DT</span>
           <div className="brand__text">
             <p className="brand__name">Devtool</p>
             <p className="brand__tag">Browser utilities</p>
           </div>
           <span className="brand__version">v0.1</span>
-        </div>
+        </Link>
 
-        <p className="nav-label" id="tools-label">
-          Tools
-        </p>
+        <p className="nav-label">Menu</p>
         <nav className="nav" aria-label="Developer tools">
+          <NavItem
+            to="/"
+            label="Home"
+            description="About Devtool"
+            icon={IconHome}
+            active={path === "/"}
+          />
           {tools.map((tool) => {
             const Icon = tool.icon;
             return (
-              <button
+              <NavItem
                 key={tool.id}
-                type="button"
-                className={`nav__item ${tool.id === activeTool.id ? "is-active" : ""}`}
-                onClick={() => setActiveToolId(tool.id)}
-              >
-                {Icon ? <Icon /> : <IconWrench />}
-                <span className="nav__item-text">
-                  <span className="nav__item-name">{tool.name}</span>
-                  <small className="nav__item-desc">{tool.description}</small>
-                </span>
-                {tool.id === activeTool.id && (
-                  <span className="nav__dot" aria-hidden="true" />
-                )}
-              </button>
+                to={tool.path}
+                label={tool.name}
+                description={tool.description}
+                icon={Icon ?? IconWrench}
+                active={activeTool?.id === tool.id}
+              />
             );
           })}
         </nav>
@@ -61,7 +59,9 @@ export default function App() {
             <span className="topbar__divider" aria-hidden="true">
               /
             </span>
-            <span className="topbar__tool">{activeTool.name}</span>
+            <span className="topbar__tool">
+              {activeTool ? activeTool.name : "Home"}
+            </span>
           </div>
           <p className="topbar__meta">
             <IconLock />
@@ -70,9 +70,40 @@ export default function App() {
         </header>
 
         <main className="main">
-          <ActiveComponent />
+          {activeTool ? (
+            <ActiveTool tool={activeTool} />
+          ) : (
+            <Home />
+          )}
         </main>
       </div>
     </div>
+  );
+}
+
+/** Per-route rendering with document metadata for each tool. */
+function ActiveTool({ tool }) {
+  const Component = tool.component;
+  usePageMeta({
+    title: tool.metaTitle,
+    description: tool.metaDescription,
+  });
+  return <Component />;
+}
+
+function NavItem({ to, label, description, icon: Icon, active }) {
+  return (
+    <Link
+      to={to}
+      className={`nav__item ${active ? "is-active" : ""}`}
+      aria-current={active ? "page" : undefined}
+    >
+      <Icon />
+      <span className="nav__item-text">
+        <span className="nav__item-name">{label}</span>
+        <small className="nav__item-desc">{description}</small>
+      </span>
+      {active && <span className="nav__dot" aria-hidden="true" />}
+    </Link>
   );
 }
